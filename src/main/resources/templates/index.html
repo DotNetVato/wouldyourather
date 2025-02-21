@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Would You Rather">
+    <title>Would You Rather</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/grids-responsive-min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/dialog.css">
+</head>
+<body>
+
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+        <div class="header">
+            <h1 class="pure-title">Would you Rather</h1>
+            <h2 class="pure-tagline">a friday standup event</h2>
+
+            <nav class="nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <form method="post" th:action="@{/submit}">
+                            <button class="pure-button pt-10" type="submit" name="action" value="pickPlayer" th:if="${players?.size() gt 0}">Select Random Player</button>
+                            <button class="pure-button pt-10" type="submit" name="action" value="refreshPlayers" th:if="${players?.size() le 0}">Refresh Players</button>
+                            <button class="pure-button make-opaque pt-10" type="submit" name="action" value="refreshPlayers" th:if="${players?.size() gt 0}">Refresh Players</button>
+                            <button class="pure-button make-opaque pt-10" type="submit" name="action" value="refreshWouldYouRathers" th:if="${wouldyourathers?.size() gt 0}">Refresh Options</button>
+                        </form>
+                    </li>
+                    <Li class="nav-item">
+                        <button class="pure-button make-opaque pt-10" onclick="document.getElementById('dialog')?.showModal();">
+                            About this Web App
+                        </button>
+                    </Li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+
+            <div class="content-items" th:if="${player != null}">
+                <section class="player">
+                    <header class="player-header">
+                        <img alt="Players Avatar" class="player-avatar" th:src="${player?.Photo}">
+
+                        <h2 class="player-title" th:text="${player?.name}"></h2>
+                        <h1 class="player-sub-title" th:text="${player?.Title}"></h1>
+                        
+                    </header>
+                </section>
+            </div>
+
+            <div class="content-items" th:if="${player == null}">
+                <section class="player">
+
+                    <header class="player-header">
+                        <img alt="Players Avatar" class="player-avatar" th:src="@{/images/blank.jpg}">
+
+                        <h2 class="player-title">Waldo</h2>
+                        <h1 class="player-sub-title">Sr Expert Software Engineer III<sup>3</sup></h1>
+                        
+                    </header>
+                </section>
+            </div>
+
+            <div th:if="${player?.WouldYouRather == null}" style="height: 60px;">&nbsp;</div>
+
+            <div class="content-items" th:if="${player?.WouldYouRather != null}" style="height: 60px;">
+                <section class="player">
+                    <header>
+
+                        <div style="background-color: whitesmoke; text-align: center; border-radius: 5px; padding: 5px;">
+                            <span class="would-you-rather-option" th:text="${player?.WouldYouRather.OptionOne}"></span>
+                            <span class="would-you-rather-or">OR</span>
+                            <span class="would-you-rather-option" th:text="${player?.WouldYouRather.OptionTwo}"></span>
+                        </div>
+                        
+                    </header>
+                </section>
+            </div>
+
+                <section class="player">
+
+                    <div class="player-description">
+
+                        <div class="pure-g center">
+                            
+                            <div class="pure-u-1 pure-u-md-1-2" style="width: 35%;">
+                                <table class="pure-table" id="Players">
+                                    <thead>
+                                        <tr>
+                                            <td><strong th:text="${'Remaining Players ('+ players?.size() +')'}"></strong></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="player: ${players}">
+                                            <td th:text="${player.name}"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div class="pure-u-1 pure-u-md-1-2" style="width: 65%;">
+
+                                <table class="pure-table" id="WouldYouRathers">
+                                    <thead>
+                                        <th style="text-align: right;">Option One</th>
+                                        <th></th>
+                                        <th style="text-align: left;">Option Two</th>
+                                    </thead>
+                                    <tr class="" th:classappend="${wouldyourather.IsUsed ? 'would-you-rather-used' : ''}" th:each="wouldyourather: ${wouldyourathers}">
+                                        <td style="text-align: right;" th:text="${wouldyourather.OptionOne}"></td>
+                                        <td><strong>OR</strong></td>
+                                        <td style="text-align: left;" th:text="${wouldyourather.OptionTwo}"></td>
+                                    </tr>
+                                </table>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="footer">
+                <div class="pure-menu pure-menu-horizontal">
+                    <ul>
+                        <li class="pure-menu-item"><a href="" class="pure-menu-link">Friday Standup</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="dialog-container">
+    <dialog id="dialog" aria-labelledby="title">
+        <div class="wrapper">
+            <h2 class="dialog-title">About Would You Rather</h2>
+            <control-box>
+                <button onclick="document.getElementById('dialog')?.close();">
+                    X
+                </button>
+            </control-box>
+            <p>
+                <ul>
+                    <li>
+                        Spring Boot Starter Web
+                        <a href="https://spring.io/guides/gs/spring-boot" target="_blank">
+                            <img src="/images/svg/navigate-external.svg" width="16" height="16" />
+                        </a>
+                    </li>
+                    <li>Spring Boot Starter Thymeleaf
+                        <a href="https://www.thymeleaf.org/" target="_blank">
+                            <img src="/images/svg/navigate-external.svg" width="16" height="16" />
+                        </a>
+                    </li>
+                    <li>
+                        Spring Boot DevTools
+                        <a href="https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools" target="_blank">
+                            <img src="/images/svg/navigate-external.svg" width="16" height="16" />
+                        </a>
+                    </li>
+                    <li>
+                        Interface Comparator&lt;T&gt;
+                        <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Comparator.html" target="_blank">
+                            <img src="/images/svg/navigate-external.svg" width="16" height="16" />
+                        </a>
+                    </li>
+                    <li>
+                        java.io.BufferedReader
+                        <a href="https://docs.oracle.com/en/java/javase/17/" target="_blank">
+                            <img src="/images/svg/navigate-external.svg" width="16" height="16" />
+                        </a><br/>
+                        java.io.InputStreamReader
+                        <a href="https://docs.oracle.com/en/java/javase/17/" target="_blank">
+                            <img src="/images/svg/navigate-external.svg" width="16" height="16" />
+                        </a><br/>
+                        Interface Stream&lt;T&gt;
+                        <a href="https://docs.oracle.com/en/java/javase/17/" target="_blank">
+                            <img src="/images/svg/navigate-external.svg" width="16" height="16" />
+                        </a><br/>
+                        Collection.shuffle(List&lt;T&gt;)
+                        <a href="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collections.html#shuffle(java.util.List)" target="_blank">
+                            <img src="/images/svg/navigate-external.svg" width="16" height="16" />
+                        </a><br/>
+                    </li>
+                    <li>
+                        Interface DataService&lt;T&gt;
+                    </li>
+                    <li>
+                        PlayerDataService implements DataService&lt;Player&gt;
+                    </li>
+                    <li>
+                        WouldYouRatherDataService implements DataService&lt;WouldYouRather&gt;
+                    </li>
+                </ul>
+            </p>
+        </dialog>
+</div>
+  
+  
+
+</body>
+</html>
+

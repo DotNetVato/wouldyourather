@@ -1,0 +1,50 @@
+.dialog-container {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    height: 36rem;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: center;
+}
+
+dialog {
+    padding: 1.5rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 0.75rem;
+    width: min(calc(100vw - 6rem), 42rem);
+    height: min(calc(100vw - 6rem), 32rem);
+
+    control-box{
+        display: flex;
+        justify-content: right;
+    }
+
+    h2 {
+        line-height: 1.5;
+        font-size: 1.2rem;
+        margin: 0;
+        position: absolute;
+        float: left;
+        top: 5px;        
+    }
+
+    button {
+        width: 25px;
+        height: 25px;
+        position: absolute;
+        float: right;
+        top: 5px;
+        cursor: pointer;
+        font-weight: bold;
+    }
+
+    li {
+        list-style-type: square;
+        padding: 10px;
+    }
+
+        li::marker {
+            color: #718096;
+        }
+
+}

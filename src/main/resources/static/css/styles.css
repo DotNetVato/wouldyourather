@@ -1,0 +1,239 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(61, 146, 201);
+}
+
+a:hover,
+a:focus {
+    text-decoration: underline;
+}
+
+h3 {
+    font-weight: 100;
+}
+
+#layout {
+    padding: 0;
+}
+
+.header {
+    text-align: center;
+    top: auto;
+    margin: 3em auto;
+}
+
+.sidebar {
+    background: rgb(61, 79, 93);
+    color: #fff;
+}
+
+.pure-title,
+.pure-tagline {
+    margin: 0;
+
+}
+
+.pure-title {
+    text-transform: uppercase;
+}
+
+.pure-tagline {
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 300;
+    color: rgb(176, 202, 219);
+}
+
+.nav-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-item {
+    display: inline-block;
+    zoom: 1;
+}
+
+.nav-item a {
+    background: transparent;
+    border: 2px solid rgb(176, 202, 219);
+    color: #fff;
+    margin-top: 1em;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-size: 85%;
+}
+
+.nav-item a:hover,
+.nav-item a:focus {
+    border: 2px solid rgb(61, 146, 201);
+    text-decoration: none;
+}
+
+.content {
+    padding: 2em 1em 0;
+}
+
+.content-subhead {
+    text-transform: uppercase;
+    color: #aaa;
+    border-bottom: 1px solid #eee;
+    padding: 0.4em 0;
+    font-size: 80%;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.player {
+    padding-bottom: 2em;
+}
+
+.player-title {
+    font-size: 2em;
+    color: #222121;
+    margin-bottom: 0.2em;
+}
+
+.player-sub-title {
+    text-transform: uppercase;
+    color: #817f7f;
+    border-bottom: 1px solid #eee;
+    padding: 0.2em;
+    vertical-align: middle;
+    margin-left: 100px;
+    font-size: 80%;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+}
+
+.player-avatar {
+    border-radius: 75px;
+    height: 125px;
+    width: 125px;
+    float: left;
+    margin-left: 1em;
+    margin-right: 25px;
+    object-fit: contain;
+    background-color: rgb(61, 79, 93);
+    padding: 3px;
+
+}
+
+.player-description {
+    font-family: Georgia, "Cambria", serif;
+    color: #444;
+    line-height: 1.8em;
+}
+
+.footer {
+    padding: 1em 0;
+}
+
+.footer a {
+    color: #ccc;
+    font-size: 80%;
+}
+
+.footer .pure-menu a:hover,
+.footer .pure-menu a:focus {
+    background: none;
+}
+
+@media (min-width: 48em) {
+    .content {
+        padding: 2em 3em 0;
+        margin-left: 25%;
+    }
+
+    .header {
+        margin: 46% 2em 0;
+        text-align: right;
+    }
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+    }
+
+    .footer {
+        text-align: center;
+    }
+}
+
+.center {
+    text-align: center;
+}
+
+.pure-table {
+    width: 100%;
+    text-align: left;
+}
+
+#Players tbody tr:nth-child(odd) {
+    background-color: rgb(61, 79, 93);
+    color: #fff;
+}
+
+#WouldYouRathers tbody tr:first-child {
+    text-decoration: none;
+    font-style: normal;
+}
+
+.would-you-rather-used:first-child {
+    color: black;
+    background-color: skyblue;
+    font-style: italic;
+    font-weight: bold;
+}
+
+.would-you-rather-used {
+    color: black;
+    background-color: #aaa;
+    font-style: italic;
+}
+
+.make-opaque {
+    opacity: .1;
+}
+
+.make-opaque:hover {
+    opacity: .35;
+}
+
+.pt-5 {
+    margin-top: 5px;
+}
+
+.pt-10 {
+    margin-top: 10px;
+}
+
+.pt-100 {
+    margin-top: 100px;
+}
+
+button {
+    width: 250px;
+}
+
+.would-you-rather-option {
+    font-size: 1.3em;
+    text-transform: uppercase;
+    display: inline;
+}
+
+.would-you-rather-or {
+    font-size: 2em;
+    display: inline-block;
+    width: 55px;
+    text-transform: uppercase;
+    color: forestgreen;
+}
