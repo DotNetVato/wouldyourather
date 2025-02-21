@@ -50,14 +50,14 @@ public class PlayerDataService implements DataService<Player> {
     @Override
     public void refresh(){
         try {
-            LoadData();
+            loadData();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @PostConstruct
-    private void LoadData() throws IOException {
+    private void loadData() throws IOException {
 
         var resource = new ClassPathResource("/static/players.txt", WouldyouratherApplication.class);
         try (var inputStream = resource.getInputStream()) {

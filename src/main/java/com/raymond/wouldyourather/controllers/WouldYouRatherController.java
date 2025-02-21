@@ -42,7 +42,7 @@ public class WouldYouRatherController {
     }
 
     @PostMapping("/submit")
-    public String Submit(@RequestParam(required = false) String action, RedirectAttributes redirectAttributes) {
+    public String submit(@RequestParam(required = false) String action, RedirectAttributes redirectAttributes) {
         
         if (action.equals("pickPlayer")) {
             

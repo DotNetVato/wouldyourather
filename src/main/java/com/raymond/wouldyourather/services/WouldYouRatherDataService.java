@@ -58,7 +58,7 @@ public class WouldYouRatherDataService implements DataService<WouldYouRather> {
     @Override
     public void refresh() {
         try {
-            LoadData();
+            loadData();
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -92,7 +92,7 @@ public class WouldYouRatherDataService implements DataService<WouldYouRather> {
     }
 
     @PostConstruct
-    private void LoadData() throws IOException {
+    private void loadData() throws IOException {
         var resource = new ClassPathResource("/static/wouldyourather.txt", WouldyouratherApplication.class);
         try (var inputStream = resource.getInputStream()) {
             _WouldYouRathers.clear();
